@@ -1,0 +1,44 @@
+.side--red, 
+.side--blue {
+  padding: 2em;
+  
+  border: 3px solid;
+  border-radius: 8px;
+}
+
+.side--red {
+  border-color:#cb6e6c;
+}
+
+.side--blue {
+  border-color:#83a2b8;
+}
+
+ul.red > li blockquote {
+  border-color: #dc322f;
+}
+
+ul.blue > li blockquote {
+  border-color: #268bd2;
+}
+
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-active {
+  padding-left: 10px;
+  opacity: 0;
+}
+
+.list-enter-active, .list-leave-active {
+  transition: all 0.7s;
+}
+.list-enter, .list-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}

@@ -1,0 +1,107 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: http://mozilla.github.io/nunjucks/ -->
+<!-- jade: http://jade-lang.com/ -->
+<!-- haml: http://haml.info/tutorial.html -->
+<!-- hbs(handlebars): http://handlebarsjs.com/expressions.html -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Red/Blue Penpals</title>
+    <meta name="description" content="Red and Blue Conversations">
+    <link id="favicon" rel="icon" href="https://hyperdev.com/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <header class="container">
+      
+        <h1>
+          Red/Blue Penpals
+        </h1>
+        <p>Tell <em>them</em> what you wish <em>they</em> knew about you...</p>
+        
+ 
+      
+    </header>
+
+    <main class="container">
+      <section id="app" class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="side--red">
+              <entry-form side="red"></entry-form>
+            
+              <message-list v-bind:list="redMessages" side="red"></message-list>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="side--blue">
+              <entry-form side="blue"></entry-form>
+            
+              <message-list v-bind:list="blueMessages" side="blue"></message-list>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+      
+    </main>
+
+    <footer>
+ 
+    </footer>
+
+    <script type="text/template" id="editor-template">
+      <div class="panel panel-default" v-bind:class="side">
+      <div class="panel-heading"><h2 class="panel-title">I am {{side}}, and I wish you knew...</h2></div>
+      <form class="panel-body">
+        <div class="form-group">
+          <label>Message</label>
+          <textarea class="form-control" rows="3" v-model="text"></textarea>
+        </div>
+        <div class="form-group">
+          <label>My Name</label>
+          <input type="text" class="form-control" id="exampleInputAmount" placeholder="my name" v-model="name">
+        </div>
+        <button class="btn btn-primary" v-on:click="save">Submit</button>
+      </form>
+      </div>
+    </script>
+    <script type="text/template" id="list-template">
+      
+        <transition-group name="list" tag="ul" class="list-group" v-bind:class="side">
+          <li v-for="item in list" class="list-group-item" v-bind:key="item" name="list">
+          
+          <blockquote>
+            <p>{{item.text}}</p>
+            <footer>{{item.name}}, {{ relativize(item.timestamp) }}</footer>
+          </blockquote>
+          
+          </li>
+        </transition-group>
+      
+    </script>
+
+    <!-- Your web-app is https, so your scripts need to be too -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="/app.js"></script>
+
+  </body>
+</html>
